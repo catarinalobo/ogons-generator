@@ -1,0 +1,31 @@
+#board {
+width:975px;
+height:20px;
+background-color:#d4e6f1;
+text-align: justify;
+padding-left:10px;
+}
+
+#board2 {
+width:975px;
+height:40px;
+background-color:#d4e6f1;
+text-align: justify;
+padding-left:10px;
+}
+
+#board3 {
+width:975px;
+height:625px;
+background-color:#d4e6f1;
+text-align: justify;
+padding-left:10px;
+}
+
+#board4 {
+width:975px;
+height:735px;
+background-color:#d4e6f1;
+text-align: justify;
+padding-left:10px;
+}

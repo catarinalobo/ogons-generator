@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="./styles/andreas01.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="./styles/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="./styles/programming.css" media="screen" />
+<title>Manual</title>
+</head>
+
+<body>
+<div id="wrap">
+
+<div id="leftside">
+<ul class="avmenu">
+<li><a href="index.html">Library</a></li>
+<li><a href="subclasses.html">Subclasses</a></li>
+<li><a class="current" href="manual.html">Manual</a></li>
+</ul>
+</div>
+
+<div id="contentwide">
+<br /><br /><br />
+<h1>Manual</h1>
+Last update: 29/06/2017</p>
+<br />
+<div>
+
+<h3>Grid_ogon_2 and Ogon_2 Classes</h3> 
+<p>You can obtain grid ogons and ogons. Grid ogons and ogons are stored in objects of type Grid_ogon_2 and Ogon_2, respectively.</p>
+<p>For an ogon, you have access to the grid ogon that identifies it:</p>
+<div id="board">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogon_2::get_grid_ogon_2()
+</div><br />
+<p>Get an arrangement of the polygon:</p>
+<div id="board2">
+template&lt;typename Arrangement_2_&gt;&nbsp;&nbsp;&nbsp;Arrangement_2_&nbsp;&nbsp;&nbsp;CGAL::Grid_ogon_2::get_arrangement()<br />
+template&lt;typename Arrangement_2_&gt;&nbsp;&nbsp;&nbsp;Arrangement_2_&nbsp;&nbsp;&nbsp;CGAL::Ogon_2::get_arrangement()
+</div>
+<p>Note: Arrangement_2_ must be an instance of <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arrangement__2.html">CGAL::Arrangement_2</a>, where its <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arrangement__2.html#ad7527ffb7c9b9455c839ce9e192605c8">CGAL::Arrangement_2::Traits_2</a> must be an instance of <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arr__segment__traits__2.html">CGAL::Arr_segment_traits_2</a>, <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arr__non__caching__segment__basic__traits__2.html">CGAL::Arr_non_caching_segment_basic_traits_2</a>, <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arr__non__caching__segment__traits__2.html">CGAL::Arr_non_caching_segment_traits_2</a> or <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arr__linear__traits__2.html">CGAL::Arr_linear_traits_2</a>.</p>
+<br />
+<p>Get a CCW list of polygon's vertices:</p>
+<div id="board2">
+template&lt;typename Point_2_&gt;&nbsp;&nbsp;&nbsp;std::list&lt;Point_2_&gt;&nbsp;&nbsp;&nbsp;CGAL::Grid_ogon_2::get_list()<br />
+template&lt;typename Point_2_&gt;&nbsp;&nbsp;&nbsp;std::list&lt;Point_2_&gt;&nbsp;&nbsp;&nbsp;CGAL::Ogon_2::get_list()
+</div>
+<p> Note: Point_2_ must be an instance of <a target="_blank" href="http://doc.cgal.org/latest/Kernel_23/classKernel_1_1Point__2.html">CGAL::Point_2</a>. </p>
+</div>
+
+<br /><br />
+<div>
+<h3>Ogons_generator_2 Class</h3> 
+<p>Creation of the generator, given the number of vertices (n_vertices&nbsp;&ge;&nbsp;4) that each polygon generated will have:</p>
+<div id="board">
+CGAL::Ogons_generator_2(int n_vertices)
+</div>
+<br />
+<p>Besides the number of vertices per polygon, there are three other parameters to generate an ogon:
+<ul>
+  <li>n_vertices/2&nbsp;&le;&nbsp;max_coordinate[0]: the maximum value of the x-coordinate that a vertex may have.</li>
+  <li>n_vertices/2&nbsp;&le;&nbsp;max_coordinate[1]: the maximum value of the y-coordinate that a vertex may have.</li>
+  <li>0&nbsp;&le;&nbsp;colinearity_probability&nbsp;&le;&nbsp;1: the probability of moving an edge to the same line of the previous one (if that is possible).</li>
+  <li>0&nbsp;&le;&nbsp;n_stretchings: the number of times that the sliding procedure is executed.</li>
+</ul>
+</p> 
+<p>Generate a grid ogon or an ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<br />
+<p>Generate a row-convex grid ogon or a row-convex ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_row_convex_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_row_convex_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<br />
+<p>Generate a column-convex grid ogon or a column-convex ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_column_convex_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_column_convex_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<br />
+<p>Generate a convex grid ogon or a convex ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_convex_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_convex_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<br />
+<p>Generate a path grid ogon or a path ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_path_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_path_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<p> Note: A path grid ogon P is actually defined as a thin grid ogon [2], which is a grid ogon that has exactly 2r+1 pieces in the rectilinear partition (&prod;(P)), where r is the number of reflex vertices. This number of pieces is minimum.<br />
+A path ogon P that doesn't have rectilinear cuts linking two reflex vertices, in its rectilinear partition, is called a Steiner path ogon [1]. In this polygon, all the horizontal and vertical cuts intersect the boundary at Steiner points (i.e., at extra points, other than vertices of P). In other words, P has no collinear edges. Therefore, if the colinearity_probability parameter is equal to zero, then the path ogon generated is a Steiner path ogon.</p>
+<p>Generate a spiral grid ogon or a spiral ogon:</p>
+<div id="board2">
+CGAL::Grid_ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_spiral_grid_ogon_2()<br />
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_spiral_ogon_2(int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+<br />
+<p>Generate an ogon from a grid ogon already created:</p>
+<div id="board">
+CGAL::Ogon_2&nbsp;&nbsp;&nbsp;CGAL::Ogons_generator_2::generate_ogon_from_grid_ogon_2(CGAL::Grid_ogon_2 grid_ogon, int* max_coordinate, float colinearity_probability, int n_stretchings)
+</div>
+</div>
+
+<br /><br /><br />
+<div>
+<h3>Examples</h3>
+<p>Generate a convex ogon with 64 vertices:</p>
+<div id = "board3">
+#include "Ogons_generator_2/Ogons_generator_2.h"<br />
+#include &lt;CGAL/Exact_predicates_exact_constructions_kernel.h&gt;<br />
+<br />
+using namespace std;<br />
+using namespace CGAL;<br />
+<br />
+typedef Exact_predicates_exact_constructions_kernel             Kernel;<br />
+typedef Kernel::Point_2                                         Point_2_;<br />
+<br />
+<br />
+void print_polygon(list&lt;Point_2_&gt; polygon) {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << "Ogon has " << polygon.size() << " vertices:" << endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(list&lt;Point_2_&gt;::iterator it=polygon.begin(); it!=polygon.end(); it++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << "(" << it->x() << ", " << it->y() << ")" << endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+}<br />
+<br />
+int main() {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;srand(time(0));<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n_vertices = 64;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int max_coordinate[2] = {2*n_vertices, n_vertices};<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float colinearity_probability = 0.5;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n_stretchings = n_vertices;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ogons_generator_2 generator(n_vertices);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ogon_2 ogon = generator.generate_convex_ogon_2(max_coordinate, colinearity_probability, n_stretchings);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_polygon(ogon.get_list&lt;Point_2_&gt;());<br />
+<br />
+}
+</div>
+<br /> 
+<p>Generate ten path ogons with the same path grid ogon:</p>
+<div id = "board4">
+#include "Ogons_generator_2/Ogons_generator_2.h"<br />
+#include &lt;CGAL/Exact_predicates_exact_constructions_kernel.h&gt;<br />
+<br />
+using namespace std;<br />
+using namespace CGAL;<br />
+<br />
+typedef Exact_predicates_exact_constructions_kernel             Kernel;<br />
+typedef Kernel::Point_2                                         Point_2_;<br />
+<br />
+<br />
+void print_polygon(list&lt;Point_2_&gt; polygon) {<br />
+<br />  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << "Ogon has " << polygon.size() << " vertices:" << endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(list&lt;Point_2_&gt;::iterator it=polygon.begin(); it!=polygon.end(); it++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << "(" << it->x() << ", " << it->y() << ")" << endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+}<br />
+<br />
+int main() {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;srand(time(0));<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n_vertices = 64;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int max_coordinate[2] = {2*n_vertices, n_vertices};<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float colinearity_probability = 0.5;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n_stretchings = n_vertices;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ogons_generator_2 generator(n_vertices);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grid_ogon_2 grid_ogon = generator.generate_path_grid_ogon_2();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ogon_2 ogon;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int i=1; i<=10; i++) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ogon = generator.generate_ogon_from_grid_ogon_2(grid_ogon, max_coordinate, colinearity_probability, n_stretchings);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << "--- Path ogon " << i << " ---" << endl;<br /> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_polygon(ogon.get_list&lt;Point_2_&gt;());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout << endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+}
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7901221-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</div>
+</body>
+
+</html>

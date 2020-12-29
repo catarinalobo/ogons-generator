@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="./styles/andreas01.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="./styles/print.css" media="print" />
+<title>Library</title>
+</head>
+
+<body>
+<div id="wrap">
+
+<div id="leftside">
+<ul class="avmenu">
+<li><a class="current" href="index.html">Library</a></li>
+<li><a href="subclasses.html">Subclasses</a></li>
+<li><a href="manual.html">Manual</a></li>
+</ul>
+</div>
+
+<div id="contentwide">
+<br /><br /><br />
+<h1>Generating Grid Ogons and Ogons</h1>
+<br />
+
+<p>We developed a C++ library for creating orthogonal polygons (ogons, for short) with a given number of vertices,  and some subclasses (row-convex, column-convex, convex, path and spiral ogons). </p>
+
+<p>The algorithms are based on the Inflate-Paste method, introduced by A.&nbsp;P.&nbsp;Tomás and A.&nbsp;L.&nbsp;Bajuelos in [2]. This method generates grid orthogonal polygons (grid ogons, for short), which are orthogonal polygons without collinear edges, defined in a unit square lattice and that have exactly one edge on all the grid lines that intersect their minimum bounding square. 
+
+</p> 
+
+<img id="GridOgon_Ogon" align="center" src="images/gridogon_ogon.png" style="margin: 0 270px 0; width:35%; height: 35%">
+<br />
+
+<p>The Inflate-Paste method works iteratively. To generate an n-vertex grid ogon, it starts from a unit square and performs (n-4)/2 iterations. In each iteration, it applies two transformations (called Inflate and Paste) to glue a new rectangle to the previous grid ogon, yielding a new grid ogon with one more reflex vertex. Our C++ implementation runs in O(n^2) time and uses  O(n) space. 
+<p>
+ In addition, we designed tailored versions of the Inflate-Paste algorithm to create polygons in the the aforementioned subclasses. For the row-convex, column-convex and convex grid ogons, these algorithms run in O(n) time.</p>
+
+<p>Ogons are obtained from grid ogons by sliding their edges, in such a way that the order defined by a planar sweep is kept. The sliding procedure is applied k times (k is a user-defined parameter), runs in  O(n*k) time and uses O(n) space. The generator may create polygons with collinear edges. For that purpose, it performs a final transformation making use of another parameter that defines the probability of moving an edge to the same line of the previous one (if that is possible). This transformation runs in O(n^2) time.</p>
+
+<p>The library is a fanmade package for <a target="_blank" href="http://www.cgal.org/">CGAL</a>. We use <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/classCGAL_1_1Arrangement__2.html">CGAL::Arrangement_2</a>, from package <a target="_blank" href="http://doc.cgal.org/latest/Arrangement_on_surface_2/">2D Arrangements</a>, to have a DCEL as a possible representation for the generated orthogonal polygon. It is also possible to have as output a doubly linked list of vertices of type <a target="_blank" href="http://doc.cgal.org/latest/Kernel_23/classKernel_1_1Point__2.html">CGAL::Point_2</a>, in counterclockwise (CCW) order. The coordinates of the vertices are non-negative integers. </p>
+
+<h3>Download Library</h3>
+
+Our library is distributed under  <a target="_blank" href="https://www.gnu.org/licenses/licenses.html">GNU General Public License</a>.
+<p align="left">
+
+<table border="0" cellpadding="5" cellspacing="1" width="10%">
+<tbody>
+<tr>
+<td align="left" bgcolor="#7FFFD4" valign="middle">
+<font color="#000000" face="Helvetica, Arial, sans-serif"><a href="./files/Ogons_generator_2.zip">Download library</a></font> 
+</td>
+</tr>
+</tbody>
+</table>
+Last update: 29/06/2017
+
+<br /><br />
+<h3>Related Publications</h3>
+
+<table>
+<tr valign="top">
+<td class="ref-col" align="right" class="bibtexnumber">
+</td>
+<td class="bibtexitem", style="width: 920px;">
+[1] Ferreira, C.&nbsp;L., "Algorithms for Chromatic Art Gallery Problems with Vertex &alpha;-Guards", MSc Thesis in Computer Science, Faculty of Sciences, University of Porto, 2016.
+</td>
+</tr>
+<tr valign="top">
+<td class="ref-col" align="right" class="bibtexnumber">
+</td>
+<td class="bibtexitem", style="width: 920px;">
+[2] Tom&aacute;s&nbsp;A.&nbsp;P. and Bajuelos&nbsp;A.&nbsp;L., "<a target="_blank" href="http://www.dcc.fc.up.pt/%7Eapt/onlinepapers/cga04.pdf">Quadratic-Time Linear-Space Algorithms for Generating Orthogonal Polygons with a Given Number of Vertices</a>". In: Lagan&aacute; A.&nbsp;et al (Eds), ICCSA 2004. LNCS, vol. 3045, pp. 117-126, Springer. [<a target="_blank" href="https://doi.org/10.1007/978-3-540-24767-8_13">DOI</a>, <a target="_blank" href="http://www.dcc.fc.up.pt/%7Eapt/onlinepapers/cga04.pdf">PDF</a>].
+For an implementation of the Inflate-Cut method refer to this <a target="_blank" href="http://www.dcc.fc.up.pt/~apt/genpoly/">web page</a>.
+</td>
+</tr>
+</table>
+<br />
+
+<br />
+<h3>Contacts</h3>
+<td>
+<a target="_blank" href="http://www.dcc.fc.up.pt/~apt/">Ana Paula Tom&aacute;s</a>, <a target="_blank" href="https://sigarra.up.pt/fcup/pt/uni_geral.unidade_view?pv_unidade=89">Computer Science Department</a>, <a target="_blank" href="http://www.fc.up.pt/">Faculty of Sciences</a>, <a target="_blank" href="https://sigarra.up.pt/up/">University of Porto</a>
+</td>
+<br>
+<td>
+<a target="_blank" href="https://www.linkedin.com/in/catarina-lobo-ferreira-3b30b913a">Catarina Lobo Ferreira</a>, <a target="_blank" href="https://sigarra.up.pt/fcup/pt/uni_geral.unidade_view?pv_unidade=89">Computer Science Department</a>, <a target="_blank" href="http://www.fc.up.pt/">Faculty of Sciences</a>, <a target="_blank" href="https://sigarra.up.pt/up/">University of Porto</a>
+</td>
+</div>
+
+<div id="footer">
+<p>This project has the support of</p><a target="_blank" href="http://www.fct.pt/"><img id="FCT" src="images/fct.png" style="width:50%; height: 50%"></a>
+<br />
+<p>Thanks to <a href="http://www.dcc.fc.up.pt/~fds">Fernando M. A. Silva</a> for the page's layout &middot; Design by <a href="http://andreasviklund.com/">Andreas Viklund</a></p>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7901221-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</div>
+</body>
+
+</html>
